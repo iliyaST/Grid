@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import "./grid-style.css";
 import Row from "./row/Row";
 import { KEYS_MAP } from "../common/constants";
