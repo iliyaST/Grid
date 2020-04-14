@@ -1,6 +1,7 @@
 import React from "react";
+
 import Table from "./grid/Table";
-import "./common/spinner.css";
+import Spinner from "./common/spinner/Spinner";
 
 class GridApp extends React.Component {
   constructor() {
@@ -20,7 +21,7 @@ class GridApp extends React.Component {
     return this.state.data ? (
       <Table data={this.state.data}></Table>
     ) : (
-      <div class="lds-dual-ring"></div>
+      <Spinner></Spinner>
     );
   }
 }

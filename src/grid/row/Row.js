@@ -5,6 +5,9 @@ const Row = ({ rowData, tagProp }) => {
   const cells = Object.keys(rowData).map((key) => {
     return (
       <Cell
+        onclick={() => {
+          console.log("hello!");
+        }}
         tagProp={tagProp}
         cellData={{ value: rowData[key], key }}
         key={key}
