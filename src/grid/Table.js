@@ -1,11 +1,11 @@
 import React from "react";
 import "./grid-style.css";
 import Row from "./row/Row";
-import { KEYS_MAP } from "../common/constants";
+import { Mapper } from "../common/constants";
 
 const Table = ({ data, updateState }) => {
   const headerRowsObject = Object.keys(data[0]).reduce((acc, curr) => {
-    acc[curr] = KEYS_MAP[curr];
+    acc[curr] = Mapper.KEYS_MAP[curr];
     return acc;
   }, {});
 

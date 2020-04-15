@@ -36,8 +36,33 @@ function deleteUser(req, res) {
   });
 }
 
+function sortAllUsers(req, res) {
+  const { attribute } = req.query;
+  models.userModel.find({}).then((users) => {
+    const mappedUsers = mapUsers(users);
+    if (attribute === "id") {
+      mappedUsers.sort((a, b) => {
+        return a.id - b.id;
+      });
+    } else {
+      mappedUsers.sort(function (a, b) {
+        if (a[attribute] < b[attribute]) {
+          return -1;
+        }
+        if (a[attribute] > b[attribute]) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
+    res.send(mappedUsers);
+  });
+}
+
 module.exports = {
   getAll,
   filterByDepartmentName,
   deleteUser,
+  sortAllUsers,
 };

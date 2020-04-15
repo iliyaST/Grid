@@ -13,4 +13,5 @@ module.exports = (app) => {
   app.get("/getAll", userController.getAll);
   app.get("/filter", userController.filterByDepartmentName);
   app.get("/delete", userController.deleteUser);
+  app.get("/sort", userController.sortAllUsers);
 };

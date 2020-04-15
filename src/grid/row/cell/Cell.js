@@ -1,4 +1,5 @@
 import React from "react";
+import { Mapper } from "../../../common/constants";
 
 class Cell extends React.Component {
   constructor(props) {
@@ -14,16 +15,27 @@ class Cell extends React.Component {
 
   cellClicked(e) {
     if (e.target.className === "delete") {
-      let content = e.target.innerHTML;
-      fetch(`http://localhost:8080/delete/?id=${+content}`).then((res) => {
+      let id = e.target.innerHTML;
+      fetch(`http://localhost:8080/delete/?id=${+id}`).then((res) => {
         console.log("User was deleted!" + res);
         this.props.updateState();
       });
     }
 
     if (e.target.className === "filter") {
-      let content = e.target.innerHTML;
-      fetch(`http://localhost:8080/filter/?department=${content}`)
+      let departmentName = e.target.innerHTML;
+      fetch(`http://localhost:8080/filter/?department=${departmentName}`)
+        .then((response) => response.json())
+        .then((users) => {
+          this.props.updateState(users);
+        });
+    }
+
+    if (e.target.className === "sort") {
+      let attribute = e.target.innerHTML;
+      fetch(
+        `http://localhost:8080/sort/?attribute=${Mapper.REVERSED_KEYS_MAP[attribute]}`
+      )
         .then((response) => response.json())
         .then((users) => {
           this.props.updateState(users);
@@ -57,7 +69,11 @@ class Cell extends React.Component {
         </td>
       );
     } else {
-      return <th className="sort">{this.state.cellData.value}</th>;
+      return (
+        <th className="sort" onClick={this.cellClicked}>
+          {this.state.cellData.value}
+        </th>
+      );
     }
   }
 }
