@@ -1,15 +1,13 @@
 import React from "react";
 import Cell from "./cell/Cell";
 
-const Row = ({ rowData, tagProp }) => {
+const Row = ({ rowData, tagProp, updateState }) => {
   const cells = Object.keys(rowData).map((key) => {
     return (
       <Cell
-        onclick={() => {
-          console.log("hello!");
-        }}
         tagProp={tagProp}
         cellData={{ value: rowData[key], key }}
+        updateState={updateState}
         key={key}
       ></Cell>
     );

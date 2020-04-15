@@ -11,6 +11,14 @@ class GridApp extends React.Component {
     };
   }
 
+  updateState = (data) => {
+    if (!data) {
+      window.location.reload(false);
+    } else {
+      this.setState({ data });
+    }
+  };
+
   componentDidMount() {
     fetch("http://localhost:8080/getAll")
       .then((response) => response.json())
@@ -19,7 +27,7 @@ class GridApp extends React.Component {
 
   render() {
     return this.state.data.length > 0 ? (
-      <Table data={this.state.data}></Table>
+      <Table data={this.state.data} updateState={this.updateState}></Table>
     ) : (
       <Spinner></Spinner>
     );

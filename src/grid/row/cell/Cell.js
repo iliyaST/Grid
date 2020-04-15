@@ -8,16 +8,26 @@ class Cell extends React.Component {
       tagName: props.tagProp, // should be isHeader (boolean)!!
       cellData: props.cellData,
     };
+
+    this.cellClicked = this.cellClicked.bind(this);
   }
 
   cellClicked(e) {
     if (e.target.className === "delete") {
+      let content = e.target.innerHTML;
+      fetch(`http://localhost:8080/delete/?id=${+content}`).then((res) => {
+        console.log("User was deleted!" + res);
+        this.props.updateState();
+      });
     }
 
     if (e.target.className === "filter") {
-      //   let content = e.target.innerHTML;
-      //   console.log(content);
-      //   fetch(`http://localhost:8080/filter/${content}`);
+      let content = e.target.innerHTML;
+      fetch(`http://localhost:8080/filter/?department=${content}`)
+        .then((response) => response.json())
+        .then((users) => {
+          this.props.updateState(users);
+        });
     }
   }
 
