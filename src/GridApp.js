@@ -7,7 +7,7 @@ class GridApp extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: undefined,
+      data: [],
     };
   }
 
@@ -18,7 +18,7 @@ class GridApp extends React.Component {
   }
 
   render() {
-    return this.state.data ? (
+    return this.state.data.length > 0 ? (
       <Table data={this.state.data}></Table>
     ) : (
       <Spinner></Spinner>

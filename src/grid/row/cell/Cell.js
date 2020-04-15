@@ -10,8 +10,20 @@ class Cell extends React.Component {
     };
   }
 
+  cellClicked(e) {
+    if (e.target.className === "delete") {
+    }
+
+    if (e.target.className === "filter") {
+      //   let content = e.target.innerHTML;
+      //   console.log(content);
+      //   fetch(`http://localhost:8080/filter/${content}`);
+    }
+  }
+
   render() {
-    // needs refactor
+    //TODO: refactor
+    // needs refactoring...
 
     let mapper = {
       id: "delete",
@@ -30,7 +42,9 @@ class Cell extends React.Component {
           </a>
         </td>
       ) : (
-        <td className={classIdentifier}>{this.state.cellData.value}</td>
+        <td className={classIdentifier} onClick={this.cellClicked}>
+          {this.state.cellData.value}
+        </td>
       );
     } else {
       return <th className="sort">{this.state.cellData.value}</th>;
