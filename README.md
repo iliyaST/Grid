@@ -2,6 +2,7 @@
 Grid app with react and node.js
 
 Install mongodb and run it.
+No need to add records, they will be added automaticly.
 
 Start the express server: 
 
